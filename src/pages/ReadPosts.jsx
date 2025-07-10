@@ -26,13 +26,16 @@ const ReadPosts = (props) => {
         <div className="ReadPosts">
             {
                 posts && posts.length > 0 ?
-                posts.map((post,index) => 
+                [...posts]
+                .sort((a, b) => a.id - b.id)
+                .map((post,index) => 
                     <Card 
                         key={post.id}
                         id={post.id}
                         title={post.title}
                         author={post.author}
                         description={post.description}
+                        betCount={post.betCount}
                     />
                 ) : <h2>{'No Challenges Yet 😞'}</h2>
             }
