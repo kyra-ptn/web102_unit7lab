@@ -1,3 +1,4 @@
+import { supabase } from '../client'
 import { useState } from 'react'
 import './CreatePost.css'
 
@@ -15,6 +16,18 @@ const CreatePost = () => {
         })
     }
 
+    const createPost = async (event)=> {
+        event.preventDefault()
+
+        await supabase
+            .from('Posts')
+            .insert({title: post.title, author: post.author, description: post.description})
+            .select()
+
+        window.location = "/"
+        
+    } 
+
     return (
         <div>
             <form>
@@ -30,7 +43,7 @@ const CreatePost = () => {
                 <textarea rows="5" cols="50" id="description" name="description" onChange={handleChange}>
                 </textarea>
                 <br/>
-                <input type="submit" value="Submit" />
+                <input type="submit" value="Submit" onClick={createPost} />
             </form>
         </div>
     )

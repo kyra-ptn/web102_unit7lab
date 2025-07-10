@@ -35,7 +35,7 @@ const App = () => {
   let element = useRoutes([
     {
       path: "/",
-      element:<ReadPosts data={posts}/>
+      element:<ReadPosts/>
     },
     {
       path:"/edit/:id",
